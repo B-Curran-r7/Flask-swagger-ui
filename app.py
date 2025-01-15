@@ -8,7 +8,7 @@ def index():
     if request.headers.get('Authorization') == 'Bearer testSecretValue':
         response = make_response(render_template('index.html'))
         return response, 200
-    response = make_response("Unauthorized", 401)
+    return "Unauthorized", 401
 
 if __name__ == '__main__':
     app.run()
