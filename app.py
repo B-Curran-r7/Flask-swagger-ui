@@ -5,10 +5,10 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     print("Request received.")
-    if request.headers.get('Authorization') == 'Bearer secret-from-store':
+    if request.headers.get('Authorization') == 'Bearer testSecretValue':
         response = make_response(render_template('index.html'))
         return response, 200
-    return make_response(render_template('index.html'))
+    response = make_response("Unauthorized", 401)
 
 if __name__ == '__main__':
     app.run()
