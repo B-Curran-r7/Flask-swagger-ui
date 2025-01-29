@@ -7,16 +7,14 @@ credential = ManagedIdentityCredential(client_id="fb9b4fc1-7856-4b09-ac12-713345
 #Todo, replace with environment variable after testing
 secretClient = SecretClient(vault_url="https://key-vault-in-mi-group.vault.azure.net/", credential=credential)
 secret = secretClient.get_secret("test-secret")
-print(secret.value)
-print(secret.name)
-print(secret.id)
+print('Using secret: ' + secret.name)
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
     print("Request received.")
-    if request.headers.get('Authorization') == 'Bearer testSecretValue':
+    if request.headers.get('Authorization') == secret.value:
         response = make_response(render_template('index.html'))
         return response, 200
     return "Unauthorized", 401
