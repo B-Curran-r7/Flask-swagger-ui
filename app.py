@@ -15,8 +15,7 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     print("Request received.")
-    print('Expecting secret: ' + secret.value)
-    if request.headers.get('Authorization') == 'Bearer '+secret.value:
+    if request.headers.get('Authorization') == secret.value:
         response = make_response(render_template('index.html'))
         return response, 200
     return "Unauthorized", 401
