@@ -8,6 +8,7 @@ credential = ManagedIdentityCredential(client_id="fb9b4fc1-7856-4b09-ac12-713345
 secretClient = SecretClient(vault_url="https://key-vault-in-mi-group.vault.azure.net/", credential=credential)
 secret = secretClient.get_secret("test-secret")
 print('Using secret: ' + secret.name)
+print('Expecting secret: ' + secret.value)
 
 app = Flask(__name__)
 
